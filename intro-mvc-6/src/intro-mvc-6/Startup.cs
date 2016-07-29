@@ -115,6 +115,7 @@ namespace intro_mvc_6
         public static void ConfigureAutomapper()
         {
             AutoMapper.Mapper.CreateMap<ToDo, ViewModels.ToDoViewModel>();
+            AutoMapper.Mapper.CreateMap<ViewModels.ToDoViewModel, ToDo>();
         }
 
         // Entry point for the application.

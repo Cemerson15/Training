@@ -23,6 +23,19 @@ namespace intro_mvc_6.Controllers
             return View(AutoMapper.Mapper.Map(todos, new List<ViewModels.ToDoViewModel>()));
         }
 
+        public IActionResult Create(ViewModels.ToDoViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                if (!_repository.AddToDo(AutoMapper.Mapper.Map(viewModel, new ToDo())))
+                {
+                    ModelState.AddModelError(string.Empty, "There was an error saving the todo to the database.");
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
